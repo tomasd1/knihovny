@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nazev: MyString
+  ico: 1
+  ulice: MyString
+  cislo_domovni: 1
+  psc: 1
+  x: 9.99
+  'y': 9.99
+  region: one
+  district: one
+  orp: one
+  city: one
+
+two:
+  nazev: MyString
+  ico: 1
+  ulice: MyString
+  cislo_domovni: 1
+  psc: 1
+  x: 9.99
+  'y': 9.99
+  region: two
+  district: two
+  orp: two
+  city: two
