@@ -1,24 +1,13 @@
-# README
+# Libraries of Hradec Kralove region
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+RoR learning project, website to display public libraries of Hradec Kralove region.
 
-Things you may want to cover:
+### Status:
+* models
+* data, in progress
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Todo:
+* view with filtering
+* testing - rspec and capybara
+* users (admin)
+* ? - map, vue.js, api service
