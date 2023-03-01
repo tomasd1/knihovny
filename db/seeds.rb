@@ -6,6 +6,9 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+require 'bigdecimal'
+require 'json'
+
 case Rails.env
     when 'development'
         City.destroy_all
@@ -15,44 +18,40 @@ case Rails.env
         Library.destroy_all
 end
 
-
-require 'json'
 file = File.read(Rails.root.join('db/seeds/Knihovny.json'))
 data = JSON.parse(file)
 items = data["features"]
 
-Region.create(nazev_vusc: "Královéhradecký kraj", kod_vusc: "CZ052")
+Region.create(name: "Královéhradecký kraj", code: "CZ052")
 
 district = []
 orp = []
 city = []
 
 items.each do |item|
-    district << {nazev_okresu: item["properties"]["nazev_okresu"], kod_okresu: item["properties"]["kod_okresu"]}
-    city << {nazev_obce: item["properties"]["nazev_obce"], kod_obce: item["properties"]["kod_obce"]}
-    orp << {nazev_orp: item["properties"]["nazev_orp"], kod_orp: item["properties"]["kod_orp"]}
+    district << {name: item["properties"]["nazev_okresu"], code: item["properties"]["kod_okresu"]}
+    city << {name: item["properties"]["nazev_obce"], code: item["properties"]["kod_obce"]}
+    orp << {name: item["properties"]["nazev_orp"], code: item["properties"]["kod_orp"]}
 end
 
 districts = District.create(district.uniq)
-cities = City.create(city.uniq {|c| c[:kod_obce]})
-orps = Orp.create(orp.uniq {|c| c[:kod_orp]})
+cities = City.create(city.uniq {|c| c[:code]})
+orps = Orp.create(orp.uniq {|o| o[:code]})
 
-# TODO maybe refactor the double loop or seeding completely
+# TODO maybe refactor the double loop or seeding completely, check uniq performance
 
 items.each do |item|
     Library.create(
-        nazev: item["properties"]["nazev"],
+        name: item["properties"]["nazev"],
         ico: item["properties"]["ico"].to_i,
-        ulice: item["properties"]["ulice"],
-        cislo_domovni: item["properties"]["cislo_domovni"].to_i,
-        psc: item["properties"]["psc"].to_i,
-        x: item["properties"]["x"],
-        y: item["properties"]["x"],
+        street: item["properties"]["nazev_ulice"],
+        premise: item["properties"]["cislo_domovni"].to_i,
+        postcode: item["properties"]["psc"].to_i,
+        x: BigDecimal(item["properties"]["x"], 7),
+        y: BigDecimal(item["properties"]["y"], 7),
         region: Region.find(item["properties"]["kod_vusc"]),
         district: District.find(item["properties"]["kod_okresu"]),
-        orp: Orp.find(item["properties"]["kod_orp"]),
-        city: City.find(item["properties"]["kod_obce"])
+        orp: Orp.find(item["properties"]["kod_orp"].to_i), # int
+        city: City.find(item["properties"]["kod_obce"].to_i) # int
     )
 end
-
-

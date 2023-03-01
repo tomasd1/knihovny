@@ -4,7 +4,7 @@ RoR learning project, website to display public libraries of Hradec Kralove regi
 
 ### Status:
 * models
-* data, in progress
+* data - seeding
 
 ### Todo:
 * view with filtering

@@ -1,26 +1,26 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  nazev: MyString
+  name: MyString
   ico: 1
-  ulice: MyString
-  cislo_domovni: 1
-  psc: 1
+  street: MyString
+  premise: 1
+  postcode: 1
   x: 9.99
-  'y': 9.99
+  y: 9.99
   region: one
   district: one
   orp: one
   city: one
 
 two:
-  nazev: MyString
+  name: MyString
   ico: 1
-  ulice: MyString
-  cislo_domovni: 1
-  psc: 1
+  street: MyString
+  premise: 1
+  postcode: 1
   x: 9.99
-  'y': 9.99
+  y: 9.99
   region: two
   district: two
   orp: two
