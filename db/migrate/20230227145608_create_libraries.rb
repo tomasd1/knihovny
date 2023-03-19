@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateLibraries < ActiveRecord::Migration[7.0]
   def change
     create_table :libraries do |t|
@@ -27,6 +29,5 @@ class CreateLibraries < ActiveRecord::Migration[7.0]
     add_column :libraries, :district_id, :string, null: false, limit: 6
     add_foreign_key :libraries, :districts, column: :district_id, primary_key: 'code'
     add_index(:libraries, :district_id)
-
   end
 end

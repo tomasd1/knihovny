@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Library < ApplicationRecord
   belongs_to :region
   belongs_to :district
@@ -14,5 +16,4 @@ class Library < ApplicationRecord
   validates :postcode, length: { maximum: 5 }
   validates :x, :y, numericality: true
   validates :x, :y, length: { maximum: 7 }
-
 end
